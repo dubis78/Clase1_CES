@@ -1,27 +1,37 @@
-class Persona {
-  constructor (nombre, edad) {
-      this._nombre = nombre;
-      this._edad = edad;
+class Person{
+  constructor(name,age){
+    this.name =name;
+    this.age =age;
   }
-      
-  showInfo () {
-      return "Yo soy " + this._nombre + ", y tengo  " + this._edad + " años";
+  welcome(){
+    return "Welcome "+this.name+', you are '+this.age+" years old";
   }
-}
+};
 
-class Empleado extends Persona {
-  constructor (nombre, edad, sex) {
-      super(nombre,edad);  //super indica que se van usar los atributos heredados y tambien otros definidos solo en la clase hijo
-      this._sex = sex;
+class Employee extends Person{
+  constructor(name,age,gender){
+    super(name,age);
+    this.gender =gender;
   }
-      
-  showInfo(){ //al modificar el metodo heredado de Persona se aplica el Polimorfismo
-      return "Yo soy " + this._sex + ", mi nombre es " + this._nombre + ", y tengo " + this._edad +" años";
+  welcome(){
+    return "Welcome employee "+this.name+', you are '+this.age+` years old and your gender is ${this.gender} `;
   }
-}
+};
 
-let miPersona = new Persona('Jon', 20);
-let miEmpleado = new Empleado('Doe', 10, 'hombre');
+class Familiar extends Employee{
+  constructor(name,age,gender){
+    super(name,age)
+    this.gender =gender;
+  }
+  welcomeFamiliar(){
+    return "Welcome my familiar "+this.name+', you are '+this.age+" years old"+` and your gender is ${this.gender}`;
+  }
+};
 
-console.log(miPersona.showInfo());
-console.log(miEmpleado.showInfo());
+let myPerson= new Person('Jhon',20);
+let myEmployee= new Employee('Bill',25,'M');
+let myFamiliar=new Familiar('Elisa',6,'F')
+
+console.log(myPerson.welcome());
+console.log(myEmployee.welcome());
+console.log(myFamiliar.welcome());
